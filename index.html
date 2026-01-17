@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-users"></i> Online Users</h2>
+                <div class="online-count">0</div>
+            </div>
+            <div class="users-list" id="usersList">
+                <div class="empty-users">No users online</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-name" id="userName">Guest</div>
+                <div class="connection-status connected">
+                    <i class="fas fa-circle"></i> Connected
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="chat-header">
+                <h1><i class="fas fa-comments"></i> Real-Time Chat</h1>
+                <p>Powered by Socket.IO</p>
+            </div>
+
+            <div class="messages-container" id="messagesContainer">
+                <!-- Messages will appear here -->
+                <div class="welcome-message">
+                    <h3>Welcome to Real-Time Chat!</h3>
+                    <p>Enter your name below to start chatting with others online.</p>
+                </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <!-- Typing notification appears here -->
+            </div>
+
+            <!-- Join chat form (shown initially) -->
+            <div class="join-form" id="joinForm">
+                <h3>Join the Chat</h3>
+                <div class="input-group">
+                    <input type="text" id="usernameInput" placeholder="Enter your name" maxlength="20">
+                    <button id="joinButton" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Join Chat
+                    </button>
+                </div>
+                <p class="form-note">Choose a name to identify yourself in the chat.</p>
+            </div>
+
+            <!-- Message input (hidden initially) -->
+            <div class="message-input-container" id="messageInputContainer" style="display: none;">
+                <div class="input-group">
+                    <input type="text" id="messageInput" placeholder="Type your message here..." maxlength="500">
+                    <button id="sendButton" class="btn-primary" disabled>
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+                <div class="input-actions">
+                    <button id="emojiButton" class="btn-icon">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <div class="char-count">
+                        <span id="charCount">0</span>/500
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emoji picker modal -->
+    <div class="emoji-modal" id="emojiModal">
+        <div class="emoji-header">
+            <h3>Select Emoji</h3>
+            <button class="close-emoji" id="closeEmoji">&times;</button>
+        </div>
+        <div class="emoji-grid">
+            <!-- Emojis will be added here with JavaScript -->
+        </div>
+    </div>
+    <div class="emoji-overlay" id="emojiOverlay"></div>
+
+    <!-- Socket.IO client library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
