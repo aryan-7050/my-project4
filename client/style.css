@@ -13,6 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .container {
@@ -34,6 +35,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 20px 0;
+    flex-shrink: 0;
 }
 
 .sidebar-header {
@@ -148,6 +150,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #f8f9fa;
+    min-width: 0;
 }
 
 .chat-header {
@@ -305,6 +308,7 @@ input:focus {
     justify-content: center;
     gap: 10px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -443,7 +447,7 @@ input:focus {
     background: #a1a1a1;
 }
 
-/* Responsive design */
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
@@ -454,24 +458,289 @@ input:focus {
     
     .sidebar {
         width: 100%;
-        height: 200px;
-        padding: 15px 0;
+        max-height: 180px;
+        padding: 12px 0;
+        flex-shrink: 0;
+    }
+    
+    .sidebar-header {
+        padding: 0 15px 12px;
+    }
+    
+    .sidebar-header h2 {
+        font-size: 1rem;
     }
     
     .users-list {
+        padding: 8px 15px;
         display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 8px;
+        flex: none;
+        min-height: 40px;
     }
     
     .user-item {
+        flex: 0 0 auto;
+        min-width: 100px;
+        max-width: 140px;
+        padding: 8px 12px;
         margin-bottom: 0;
-        flex: 1;
-        min-width: 120px;
-        max-width: 150px;
+        font-size: 0.85rem;
+    }
+    
+    .user-item i {
+        font-size: 1rem;
+    }
+    
+    .user-info {
+        flex-direction: row;
+        padding: 10px 15px;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    .user-name {
+        font-size: 0.9rem;
+    }
+    
+    .connection-status {
+        font-size: 0.7rem;
+        padding: 2px 10px;
+        margin-left: auto;
+    }
+    
+    .empty-users {
+        font-size: 0.8rem;
+        padding: 8px 0;
+    }
+    
+    .chat-header {
+        padding: 15px 20px;
+    }
+    
+    .chat-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .chat-header p {
+        font-size: 0.7rem;
+    }
+    
+    .messages-container {
+        padding: 15px 16px;
+        gap: 12px;
     }
     
     .message {
         max-width: 85%;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .message-header {
+        font-size: 0.75rem;
+    }
+    
+    .join-form, .message-input-container {
+        padding: 12px 16px;
+    }
+    
+    .join-form h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .input-group {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    input {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        min-width: 0;
+    }
+    
+    .btn-primary {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        flex: 0 0 auto;
+    }
+    
+    .form-note {
+        font-size: 0.75rem;
+    }
+    
+    .emoji-modal {
+        width: 95%;
+        max-width: 350px;
+    }
+    
+    .emoji-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 5px;
+        padding: 15px;
+        max-height: 250px;
+    }
+    
+    .emoji-item {
+        font-size: 1.5rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        max-height: 150px;
+        padding: 8px 0;
+    }
+    
+    .sidebar-header h2 {
+        font-size: 0.85rem;
+    }
+    
+    .sidebar-header h2 i {
+        font-size: 0.8rem;
+    }
+    
+    .online-count {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+    
+    .user-item {
+        min-width: 80px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .user-item i {
+        font-size: 0.8rem;
+        margin-right: 6px;
+    }
+    
+    .user-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .user-name {
+        font-size: 0.75rem;
+    }
+    
+    .connection-status {
+        font-size: 0.6rem;
+        padding: 2px 8px;
+    }
+    
+    .chat-header {
+        padding: 10px 14px;
+    }
+    
+    .chat-header h1 {
+        font-size: 1rem;
+    }
+    
+    .chat-header h1 i {
+        font-size: 0.9rem;
+    }
+    
+    .chat-header p {
+        font-size: 0.6rem;
+    }
+    
+    .messages-container {
+        padding: 12px 12px;
+        gap: 10px;
+    }
+    
+    .message {
+        max-width: 90%;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+    
+    .welcome-message {
+        padding: 20px 15px;
+    }
+    
+    .welcome-message h3 {
+        font-size: 0.95rem;
+    }
+    
+    .welcome-message p {
+        font-size: 0.8rem;
+    }
+    
+    .join-form, .message-input-container {
+        padding: 10px 12px;
+    }
+    
+    .join-form h3 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    input {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+    
+    .btn-primary {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+        gap: 6px;
+    }
+    
+    .btn-primary i {
+        font-size: 0.8rem;
+    }
+    
+    .btn-icon {
+        font-size: 1.1rem;
+        padding: 4px;
+    }
+    
+    .char-count {
+        font-size: 0.7rem;
+    }
+    
+    .typing-indicator {
+        font-size: 0.75rem;
+        padding: 0 12px 6px;
+        min-height: 24px;
+    }
+    
+    .emoji-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        padding: 12px;
+        max-height: 200px;
+    }
+    
+    .emoji-item {
+        font-size: 1.3rem;
+        padding: 6px;
+    }
+    
+    .emoji-header h3 {
+        font-size: 1rem;
+    }
+    
+    .close-emoji {
+        font-size: 1.5rem;
     }
 }
